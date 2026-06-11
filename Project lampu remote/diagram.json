@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "author": "Superdills",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-ir-remote", "id": "remote1", "top": -9.6, "left": -192, "attrs": {} },
+    {
+      "type": "wokwi-led-matrix",
+      "id": "matrix1",
+      "top": -236.4,
+      "left": -205.8,
+      "attrs": { "rows": "8", "cols": "8" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 69.6,
+      "left": 241.8,
+      "attrs": { "volume": "0.1" }
+    },
+    { "type": "wokwi-ir-receiver", "id": "ir1", "top": 75.45, "left": 142.22, "attrs": {} },
+    {
+      "type": "wokwi-led-matrix",
+      "id": "matrix2",
+      "top": -236.4,
+      "left": 245.4,
+      "attrs": { "rows": "8", "cols": "8" }
+    },
+    {
+      "type": "wokwi-led-matrix",
+      "id": "matrix3",
+      "top": -236.4,
+      "left": 15,
+      "attrs": { "rows": "8", "cols": "8" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "matrix1:VDD", "esp:5V", "red", [ "v9.6", "h95.6", "v220.8" ] ],
+    [ "matrix3:VDD", "esp:5V", "red", [ "v19.2", "h-125.2", "v211.2" ] ],
+    [ "matrix3:VSS", "esp:GND.1", "black", [ "v38.4", "h-144.8", "v134.4" ] ],
+    [ "matrix1:VSS", "esp:GND.1", "black", [ "v9.6", "h-0.8", "v19.2", "h76.8", "v163.2" ] ],
+    [ "matrix2:VDD", "esp:5V", "red", [ "v9.6", "h-355.6", "v211.2" ] ],
+    [ "matrix2:VSS", "esp:GND.1", "black", [ "v38.4", "h-375.2", "v153.6" ] ],
+    [ "matrix1:DIN", "esp:12", "green", [ "v28.8", "h115.2", "v124.8" ] ],
+    [ "matrix3:DIN", "matrix1:DOUT", "green", [ "v9.6" ] ],
+    [ "matrix2:DIN", "matrix3:DOUT", "green", [ "v0" ] ],
+    [ "ir1:GND", "esp:GND.3", "black", [ "v0", "h-48", "v-86.4" ] ],
+    [ "ir1:VCC", "esp:5V", "red", [ "v76.8", "h-172.8" ] ],
+    [ "ir1:DAT", "esp:2", "green", [ "v-9.6", "h0", "v38.4", "h-57.6", "v-57.6" ] ],
+    [ "bz1:1", "esp:GND.3", "black", [ "v28.8", "h-134.4", "v-28.8" ] ],
+    [ "bz1:2", "esp:17", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
